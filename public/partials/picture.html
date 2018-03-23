@@ -1,0 +1,30 @@
+<div class="page-header text-center">
+    <h1>{{picture.titulo}}</h1>
+</div>
+
+<form name="form" class="row" ng-submit="submit()">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Title</label>
+            <input ng-model="picture.titulo" name="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>URL</label>
+            <input ng-model="picture.url" name="url" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea ng-model="picture.description" name="description" class="form-control">
+            </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
+         <a href="/" class="btn btn-primary">Back</a>
+        <hr>
+    </div>
+    <div class="col-md-6">
+        <my-pic URL="{{picture.url}}" titulo="{{picture.titulo}}"></my-pic>
+    </div>
+</form>

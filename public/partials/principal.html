@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <h1 class="text-center">Fabiano Pictures</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a href="pics/new" class="btn btn-primary">New Picture</a>
+        </span>
+        <input class="form-control" ng-model="filter" placeholder="filter..." ng-model-options="{ debounce: 500 }"/>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <my-panel class="col-md-2 animated-panel" ng-repeat="pic in pictures | filter: filter" title="{{pic.titulo}}">
+     <!-- img class="img-responsive center-block" src="{{pic.url}}" alt="{{pic.titulo}}"-->
+     <my-pic url="{{pic.url}}" titulo="{{pic.titulo}}"></my-pic>
+  </my-panel>
+</div>
