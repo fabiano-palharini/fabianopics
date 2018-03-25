@@ -24,6 +24,7 @@
      <!-- img class="img-responsive center-block" src="{{pic.url}}" alt="{{pic.titulo}}"-->
      <my-pic url="{{pic.url}}" titulo="{{pic.titulo}}"></my-pic>
      <a href="/pics/edit/{{pic._id}}" class="btn btn-primary btn-block" >Edit</a>
-     <button class="btn btn-danger btn-block" ng-click="remove(pic)">Remove</button>
+     <!-- button class="btn btn-danger btn-block" ng-click="remove(pic)">Remove</button-->
+     <my-danger-button name="Remove" action="remove(pic)">Remove</my-danger-button>
   </my-panel>
 </div>

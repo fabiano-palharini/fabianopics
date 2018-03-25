@@ -23,6 +23,15 @@
             </textarea>
         </div>
 
+        <div class="form-group">
+          <label>Group</label>
+          <select name="group" class="form-control" required ng-controller="GroupsController" ng-model="picture.group"
+            ng-options="group._id as (group.nome | uppercase) for group in groups">
+            <option value="">Select a group</option>
+            <span ng-show="form.$submitted && form.group.$error.required" class="form-control alert-danger">Group field</span>
+          </select>
+        </div>
+
         <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">
             Save
         </button>
