@@ -2,6 +2,10 @@
   <h1 class="text-center">Fabiano Pictures</h1>
 </div>
 
+<p class="alert alert-info" ng-show="message.length">
+  {{message}}
+</p>
+
 <div class="row">
   <div class="col-md-12">
     <form>
@@ -19,5 +23,7 @@
   <my-panel class="col-md-2 animated-panel" ng-repeat="pic in pictures | filter: filter" title="{{pic.titulo}}">
      <!-- img class="img-responsive center-block" src="{{pic.url}}" alt="{{pic.titulo}}"-->
      <my-pic url="{{pic.url}}" titulo="{{pic.titulo}}"></my-pic>
+     <a href="/pics/edit/{{pic._id}}" class="btn btn-primary btn-block" >Edit</a>
+     <button class="btn btn-danger btn-block" ng-click="remove(pic)">Remove</button>
   </my-panel>
 </div>

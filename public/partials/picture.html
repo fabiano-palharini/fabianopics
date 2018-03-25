@@ -2,15 +2,20 @@
     <h1>{{picture.titulo}}</h1>
 </div>
 
-<form name="form" class="row" ng-submit="submit()">
+<p ng-show="message.length" class="alert alert-info">{{message}}</p>
+
+<form novalidate name="form" class="row" ng-submit="submit()">
     <div class="col-md-6">
         <div class="form-group">
             <label>Title</label>
-            <input ng-model="picture.titulo" name="title" class="form-control">
+            <input ng-model="picture.titulo" name="title" class="form-control" required ng-maxlength="20">
+            <span ng-show="form.$submitted && form.title.$error.required" class="form-control alert-danger">Mandatory field</span>
+            <span ng-show="form.$submitted && form.title.$error.maxlength" class="form-control alert-danger">This field should contain 20 chars at most</span>
         </div>
         <div class="form-group">
             <label>URL</label>
-            <input ng-model="picture.url" name="url" class="form-control">
+            <input ng-model="picture.url" name="url" class="form-control" required>
+            <span ng-show="form.$submitted && form.url.$error.required" class="form-control alert-danger">Mandatory field</span>
         </div>
         <div class="form-group">
             <label>Description</label>
@@ -18,7 +23,7 @@
             </textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">
             Save
         </button>
          <a href="/" class="btn btn-primary">Back</a>

@@ -13,6 +13,11 @@ angular.module('fabianopics',['myDirectives', 'ngAnimate', 'ngRoute'])
     controller: 'PictureController'
   });
 
+  $routeProvider.when('/pics/edit/:pictureId', {
+    templateUrl: 'partials/picture.html',
+    controller: 'PictureController'
+  });
+
   $routeProvider.otherwise({redirectTo: '/pics'});
 
 });
