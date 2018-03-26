@@ -1,4 +1,4 @@
-angular.module('fabianopics',['myDirectives', 'ngAnimate', 'ngRoute'])
+angular.module('fabianopics',['myDirectives', 'ngAnimate', 'ngRoute', 'myServices'])
 .config(function($routeProvider, $locationProvider){
 
   $locationProvider.html5Mode(true);
