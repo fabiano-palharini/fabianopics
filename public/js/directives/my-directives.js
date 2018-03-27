@@ -36,4 +36,22 @@ angular.module('myDirectives', []).directive('myPanel', function(){
 
         return ddo;
 
+})
+.directive('myFocus' function(){
+        var ddo = {};
+        ddo.restrict = "A";
+        ddo.scope = {
+            focused: '='
+        };
+
+        ddo.link = function(scope, element){
+          scope.$watch('focused', function(){
+            if(scope.focused){
+              element[0].focus();
+              scope.focused = false;
+            }
+          });
+        }
+
+        return ddo;
 });

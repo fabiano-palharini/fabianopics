@@ -1,4 +1,4 @@
-angular.module('fabianopics').controller('PictureController', function($scope, resourcePictures, $routeParams){
+angular.module('fabianopics').controller('PictureController', function($scope, picturesRegistration, resourcePictures, $routeParams){
   $scope.picture = {};
   $scope.message = '';
 
@@ -28,12 +28,21 @@ angular.module('fabianopics').controller('PictureController', function($scope, r
 
   $scope.submit = function(){
     if ($scope.form.$valid) {
-      if ($scope.picture._id){
-        resourcePictures.update({pictureId: $scope.picture._id}, $scope.picture, function(){
-          $scope.message = 'Picture edited successfully';
-        }, function(error){
-          $scope.message = 'An error happened when editing the picture';
-        })
+      picturesRegistration.save($scope.picture)
+      .then(function(data){
+        $scope.message = data.message;
+        if(data.insert) $scope.picture = {};
+        $scope.focused = true;
+      })
+      .catch(function(data){
+        $scope.message = data.message;
+      })
+//      if ($scope.picture._id){
+//        resourcePictures.update({pictureId: $scope.picture._id}, $scope.picture, function(){
+//          $scope.message = 'Picture edited successfully';
+//        }, function(error){
+//          $scope.message = 'An error happened when editing the picture';
+//        })
 
 
         /* refactor - replaced with code above
@@ -45,13 +54,13 @@ angular.module('fabianopics').controller('PictureController', function($scope, r
           $scope.message = 'An error happened when editing the picture';
         });
         */
-      }else{
-        resourcePictures.save($scope.picture, function(){
-          $scope.picture = {};
-          $scope.message = 'Picture saved successfully';
-        }, function(error){
-          $scope.message = 'An error happened when saving the picture';
-        })
+//      }else{
+//        resourcePictures.save($scope.picture, function(){
+//          $scope.picture = {};
+//          $scope.message = 'Picture saved successfully';
+//        }, function(error){
+//          $scope.message = 'An error happened when saving the picture';
+//        })
         /* refactor - replaced with code above
         $http.post('v1/fotos', $scope.picture)
         .success(function(){
@@ -61,7 +70,7 @@ angular.module('fabianopics').controller('PictureController', function($scope, r
           $scope.message = 'An error happened when saving the picture';
         });
         */
-      }
+//      }
     }
   };
 })
