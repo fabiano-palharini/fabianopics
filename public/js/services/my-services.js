@@ -8,13 +8,15 @@ angular.module('myServices', ['ngResource'])
   });
 
 })
-.factory('picturesRegistration', function(resourcePictures, $q){
+.factory('picturesRegistration', function(resourcePictures, $q, $rootScope){
   var service = {};
+  var eventName = 'pictureInsertedUpdated'
 
   service.save = function(picture){
     return $q(function(resolve, reject){
       if(picture._id){
         resourcePictures.update({pictureId: picture._id}, picture, function(){
+          $rootScope.$broadcast(eventName);
           resolve({
             message: 'Picture ' + picture.titulo + ' updated successfully!',
             insert: false
@@ -27,6 +29,7 @@ angular.module('myServices', ['ngResource'])
         })
       }else{
         resourcePictures.save(picture, function(){
+          $rootScope.$broadcast(eventName);
           resolve({
             message: 'Picture ' + picture.titulo + ' inserted successfully!',
             insert: true

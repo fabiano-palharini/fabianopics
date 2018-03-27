@@ -32,8 +32,7 @@ angular.module('fabianopics').controller('PictureController', function($scope, p
       .then(function(data){
         $scope.message = data.message;
         if(data.insert) $scope.picture = {};
-        //$scope.focused = true;
-        $scope.$broadcast('pictureInsertedUpdated');
+        //$scope.focused = true;        
       })
       .catch(function(data){
         $scope.message = data.message;
