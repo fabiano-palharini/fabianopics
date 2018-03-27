@@ -37,21 +37,32 @@ angular.module('myDirectives', []).directive('myPanel', function(){
         return ddo;
 
 })
-.directive('myFocus' function(){
+.directive('myFocus', function() {
         var ddo = {};
         ddo.restrict = "A";
+        /* not needed when using $broadcast. it also can be removed from picture.html
         ddo.scope = {
-            focused: '='
+            focused : '='
         };
+        */
 
-        ddo.link = function(scope, element){
-          scope.$watch('focused', function(){
-            if(scope.focused){
-              element[0].focus();
-              scope.focused = false;
-            }
+        ddo.link = function(scope, element) {
+          scope.$on('pictureInsertedUpdated', function(){            
+            element[0].focus();
           });
         }
 
+
+        /* replaced by code above
+          ddo.link = function(scope, element) {
+            scope.$watch('focused', function() {
+
+                if (scope.focused) {
+                    element[0].focus();
+                    scope.focused = false;
+                }
+            });
+        };*/
+
         return ddo;
-});
+    });
