@@ -47,7 +47,7 @@ angular.module('myDirectives', []).directive('myPanel', function(){
         */
 
         ddo.link = function(scope, element) {
-          scope.$on('pictureInsertedUpdated', function(){            
+          scope.$on('pictureInsertedUpdated', function(){
             element[0].focus();
           });
         }
@@ -65,4 +65,17 @@ angular.module('myDirectives', []).directive('myPanel', function(){
         };*/
 
         return ddo;
-    });
+})
+.directive('myTitles', function() {
+    var ddo = {};
+    ddo.restrict = 'E';
+    ddo.template = '<ul><li ng-repeat="title in titles">{{title}}</li></ul>';
+    ddo.controller = function($scope, resourcePictures) {
+      resourcePictures.query(function(pictures) {
+                $scope.titles = pictures.map(function(picture) {
+                    return picture.titulo;
+                });
+            });
+    };
+    return ddo;
+});
